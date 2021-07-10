@@ -10,7 +10,7 @@ typedef struct houwadat {
 	double houwa;
 	struct houwadat *p;
 } mktd;
-//構造体のデータを追加する
+//構造体のデータを追加
 mktd *addlist(double temptr,  double houwa, mktd *head);
 void showlist(mktd *p); //登録されたデータリストの表示
 void freelist(mktd *p); //プログラム終了時に使用したメモリを開放
@@ -26,7 +26,7 @@ int main(void) {
 	double a, tempt, e;
 	k=0; tempt = 0; e = 0; a = 0;
 	head = NULL;
-	puts(" *** 自己参照構造体の利用：飽和水蒸気量の計算→ファイル ***\n");
+	puts(" *** 飽和水蒸気量の計算→ファイル ***\n");
 	puts(" ----- 計算中... -----\n");
 	for (k=0; k<121; k++){
 		tempt = k-20;
@@ -34,9 +34,9 @@ int main(void) {
 		a = 217*e/(tempt+273.15);
 		head = addlist(tempt, a, head);
 	}
-	puts(" ----- 入力されたデータの表示 -----");
+	puts(" ----- 飽和水蒸気量の表示 -----");
 	showlist(head);
-	puts(" ----- 入力されたデータをファイルに書き出す -----");
+	puts(" ----- データをファイルに書き出す -----");
 	reglist(head);
 	puts("   ---Complete!--- ");
 	puts(" ----- メモリの開放 -----");
@@ -115,6 +115,7 @@ void regdatetime(void) {
 	sprintf(stime, "%d:%d:%d", local->tm_hour, local->tm_min, local->tm_sec);
 	return;
 }
+/*飽和水蒸気圧の計算 */
 double sete(double t) {
 	double e;
 	e = 6.1078 * pow(10, 7.5*t/(t+237.3));
